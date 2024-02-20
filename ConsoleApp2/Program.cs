@@ -10,6 +10,8 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             // Task1
+
+            // Getting 4,5,6 index without using Take and Skip
             /*List<int> numbers = new List<int> { 1, 2, 3, 44564, 5, 6, 7, 8, 9, 10 };
             int i = 0;
 
@@ -20,7 +22,7 @@ namespace ConsoleApp2
                 Console.WriteLine(x);
             }*/
 
-          
+
 
             List<ProgrammingLanguage> programmingLanguages = new List<ProgrammingLanguage>
             {
@@ -48,20 +50,19 @@ namespace ConsoleApp2
                       prl => prl.Id,
                       (acc, prl) => new { AccountantId = acc.Id, AccountantName = acc.Name, LanguageName = prl.Name });
 
-            /*foreach(var x in AccountantLanguages)
-            {
-                if(x.LanguageName  != "")
-                {
-                    Console.WriteLine(x.AccountantId + "--->" + x.AccountantName +"--->" + x.LanguageName);
-                }
-            }*/
+            // Get all Accountants who knows programming language
+            foreach (var i in AccountantLanguages.Select(z => z).Where(z => z.LanguageName != ""))
 
-            foreach(var x in AccountantLanguages)
             {
-                if(x.LanguageName == "C#")
-                {
-                    Console.WriteLine(x.AccountantId + "--->" + x.AccountantName + "--->" + x.LanguageName);
-                }
+
+                Console.WriteLine(i.AccountantId + "--->" + i.AccountantName + "--->" + i.LanguageName);
+
+            }
+
+            // Get all Accountants who knows C# programming language
+            foreach (var i in AccountantLanguages.Select(z => z).Where(z => z.LanguageName == "C#"))
+            {
+                Console.WriteLine(i.AccountantId + "--->" + i.AccountantName + "--->" + i.LanguageName);
             }
         }
     }
